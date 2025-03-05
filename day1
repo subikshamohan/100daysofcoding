@@ -1,0 +1,33 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int rowLen = matrix.length, colLen = matrix[0].length;
+        boolean[] rowMarker = new boolean[rowLen];
+        boolean[] colMarker = new boolean[colLen];
+
+        // mark the row and col where 0 is placed
+        for(int row = 0; row < rowLen; row++) {
+            for(int col = 0; col < colLen; col++) {
+                if(matrix[row][col] == 0) {
+                    rowMarker[row] = true;
+                    colMarker[col] = true;
+                }
+            }
+        }
+
+        // set the marked row to 0
+        for(int i = 0; i < rowLen; i++) {
+            if(rowMarker[i]) {
+                Arrays.fill(matrix[i],0);
+            } 
+        }
+
+        // set the marked col to 0
+        for(int j = 0; j < colLen; j++) {
+            if(colMarker[j]) {
+                for(int row = 0; row < rowLen; row++) {
+                    matrix[row][j] = 0;
+                }
+            }
+        }
+    }
+}
